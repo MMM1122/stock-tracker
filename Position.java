@@ -38,6 +38,10 @@ public class Position {
     public BigDecimal marketValue(BigDecimal currentPrice) {
     return quantity.multiply(currentPrice);
 }
+    public BigDecimal unrealizedGain(BigDecimal currentPrice) {
+    // 市值 减去 成本
+    return  marketValue(currentPrice).subtract(costBasis());
+}
 
 }
 

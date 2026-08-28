@@ -5,5 +5,6 @@ public class Main {
         Position p = new Position("AAPL", new BigDecimal("10"), new BigDecimal("150"));
         System.out.println("Cost basis:   " + p.costBasis());
         System.out.println("Market value: " + p.marketValue(new BigDecimal("196.40")));
+        System.out.println("Unrealized:   " + p.unrealizedGain(new BigDecimal("196.40")));
     }
 }
