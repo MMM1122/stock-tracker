@@ -10,5 +10,18 @@ public class Position {
         this.quantity = quantity;
         this.averageCost = averageCost;
     }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public BigDecimal getAverageCost() {
+        return averageCost;
+    }
+
 }
 
