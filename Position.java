@@ -32,5 +32,9 @@ public class Position {
         return averageCost;
     }
 
+    public BigDecimal costBasis() {
+    return quantity.multiply(averageCost);
+}
+
 }
 
