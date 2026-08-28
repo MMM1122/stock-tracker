@@ -35,6 +35,9 @@ public class Position {
     public BigDecimal costBasis() {
     return quantity.multiply(averageCost);
 }
+    public BigDecimal marketValue(BigDecimal currentPrice) {
+    return quantity.multiply(currentPrice);
+}
 
 }
 
