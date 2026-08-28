@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Position {
     private String symbol;
@@ -42,6 +43,13 @@ public class Position {
     // 市值 减去 成本
     return  marketValue(currentPrice).subtract(costBasis());
 }
-
+    public BigDecimal unrealizedGainPercent(BigDecimal currentPrice) {
+    // 1. 算出盈亏（复用已有方法）
+    // 2. 除以成本，保留 4 位小数，HALF_UP
+    // 3. 乘以 100
+    BigDecimal gain = unrealizedGain(currentPrice);
+    BigDecimal ratio = gain.divide(costBasis(), 4, RoundingMode.HALF_UP);
+    return ratio.multiply(BigDecimal.valueOf(100)); 
+}
 }
 
