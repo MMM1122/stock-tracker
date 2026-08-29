@@ -51,5 +51,29 @@ public class Position {
     BigDecimal ratio = gain.divide(costBasis(), 4, RoundingMode.HALF_UP);
     return ratio.multiply(BigDecimal.valueOf(100)); 
 }
+    public void addShares(BigDecimal additionalQuantity, BigDecimal pricePaid) {
+    // 1. 校验两个参数（不能 null，必须 > 0）
+    // 2. 算出合并后的新平均成本
+    // 3. 更新 this.quantity 和 this.averageCost
+    // 新平均成本 = (原股数×原成本 + 新股数×买入价) / (原股数 + 新股数)
+    if (additionalQuantity == null || additionalQuantity.signum()<=0) {
+        throw new IllegalArgumentException("additional quantity must be greater than zero");
+    }
+
+    if (pricePaid == null || pricePaid.signum()<=0) {
+        throw new IllegalArgumentException("price paid must be greater than zero");
+    }
+
+    BigDecimal existingCost = quantity.multiply(averageCost);      // 原股数 × 原成本
+    BigDecimal newCost = additionalQuantity.multiply(pricePaid);// 新股数 × 买入价
+    BigDecimal totalQuantity = quantity.add(additionalQuantity); // 原股数 + 新股数
+    BigDecimal newAverage = existingCost.add(newCost).divide(totalQuantity, 4,RoundingMode.HALF_UP);
+
+    this.averageCost = newAverage;
+    this.quantity = totalQuantity;
+
+
+
+}
 }
 
