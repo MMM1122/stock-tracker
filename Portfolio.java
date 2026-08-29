@@ -35,4 +35,21 @@ public class Portfolio {
     existing.addShares(position.getQuantity(), position.getAverageCost());
     return existing;
 }
+public BigDecimal totalCostBasis() {
+        // 把所有持仓的 costBasis() 加起来
+        BigDecimal total = BigDecimal.ZERO;
+        for (Position position : positions.values()) {
+            total = total.add(position.costBasis());
+        }
+        return total;
+    }
+
+    public BigDecimal totalMarketValue(BigDecimal currentPrice) {
+        // 把所有持仓的 maraketValue(currentPrice) 加起来
+        BigDecimal total = BigDecimal.ZERO;
+        for (Position position : positions.values()) {
+            total = total.add(position.marketValue(currentPrice));
+        }
+        return total;
+    }
 }
